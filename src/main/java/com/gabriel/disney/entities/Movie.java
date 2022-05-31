@@ -1,9 +1,6 @@
 package com.gabriel.disney.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -11,11 +8,12 @@ import java.time.LocalDate;
 public class Movie {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //private image;
     private String title;
-    private LocalDate creationDate;
+    private String creationDate;
     private int qualification;
     private String associateCharacters;
 
@@ -27,4 +25,35 @@ public class Movie {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public int getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(int qualification) {
+        this.qualification = qualification;
+    }
+
+    public String getAssociateCharacters() {
+        return associateCharacters;
+    }
+
+    public void setAssociateCharacters(String associateCharacters) {
+        this.associateCharacters = associateCharacters;
+    }
 }
