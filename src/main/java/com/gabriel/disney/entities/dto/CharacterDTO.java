@@ -1,14 +1,6 @@
-package com.gabriel.disney.entities;
+package com.gabriel.disney.entities.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "characters")
-public class Character {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CharacterDTO {
 
     //private image;
     private String name;
@@ -16,14 +8,6 @@ public class Character {
     private double weight;
     private String history;
     private String associatedMovie;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

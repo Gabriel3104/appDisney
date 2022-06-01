@@ -1,6 +1,5 @@
 package com.gabriel.disney.entities.dto;
 
-import java.time.LocalDate;
 
 public class MovieDTO {
 
