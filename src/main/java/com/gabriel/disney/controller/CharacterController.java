@@ -29,5 +29,9 @@ public class CharacterController {
         return new ResponseEntity<>(character,HttpStatus.CREATED);
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCharacter(@PathVariable Long id) {
+        service.deleteCharacter(id);
+        return new ResponseEntity<>("Message: success", HttpStatus.OK);
+    }
 }

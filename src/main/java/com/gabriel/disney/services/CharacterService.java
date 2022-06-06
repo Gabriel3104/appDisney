@@ -43,5 +43,16 @@ public class CharacterService {
         }
 
     }
+
+    public void deleteCharacter(Long id) {
+        Optional<Character> optionalCharacter = repository.findById(id);
+        if (optionalCharacter.isPresent()) {
+            repository.deleteById(id);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontro el personaje con id " + id);
+        }
+
+    }
+
     
 }
