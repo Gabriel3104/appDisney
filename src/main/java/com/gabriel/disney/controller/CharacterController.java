@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/characters")
 public class CharacterController {
@@ -33,5 +35,11 @@ public class CharacterController {
     public ResponseEntity<String> deleteCharacter(@PathVariable Long id) {
         service.deleteCharacter(id);
         return new ResponseEntity<>("Message: success", HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Character>> getAllCharacters(){
+        List<Character> character = service.getAllCharacters();
+        return new ResponseEntity<>(character,HttpStatus.OK);
     }
 }
