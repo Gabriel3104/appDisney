@@ -22,15 +22,15 @@ public class CharacterService {
         this.modelMapper = modelMapper;
     }
 
-    public Character addCharacter(CharacterDTO characterDTO){
-        Character character= modelMapper.map(characterDTO,Character.class);
+    public Character addCharacter(CharacterDTO characterDTO) {
+        Character character = modelMapper.map(characterDTO, Character.class);
         return repository.save(character);
     }
 
     public Character updateCharacter(CharacterDTO characterDTO) {
 
         Optional<Character> optionalCharacter = repository.findById(characterDTO.getId());
-        if(optionalCharacter.isPresent()){
+        if (optionalCharacter.isPresent()) {
             Character character = optionalCharacter.get();
             character.setName(characterDTO.getName());
             character.setAge(characterDTO.getAge());
@@ -39,8 +39,8 @@ public class CharacterService {
             character.setAssociatedMovie(characterDTO.getAssociatedMovie());
 
             return repository.save(character);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontro el personaje con id " + characterDTO.getId());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro el personaje con id " + characterDTO.getId());
         }
 
     }
@@ -49,13 +49,25 @@ public class CharacterService {
         Optional<Character> optionalCharacter = repository.findById(id);
         if (optionalCharacter.isPresent()) {
             repository.deleteById(id);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontro el personaje con id " + id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro el personaje con id " + id);
         }
 
     }
 
     public List<Character> getAllCharacters() {
         return repository.findAll();
+    }
+
+    public Character getCharacterById(Long id) {
+        Optional<Character> optionalCharacter = repository.findById(id);
+        Character character;
+        if (optionalCharacter.isPresent()) {
+            character = optionalCharacter.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro el personaje con el id " + id);
+        }
+        return character;
+
     }
 }

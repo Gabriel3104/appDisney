@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/characters")
@@ -42,4 +44,11 @@ public class CharacterController {
         List<Character> character = service.getAllCharacters();
         return new ResponseEntity<>(character,HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Character> getCharacterById(@PathVariable Long id){
+        Character character = service.getCharacterById(id);
+        return new ResponseEntity<>(character,HttpStatus.OK);
+    }
+
 }
